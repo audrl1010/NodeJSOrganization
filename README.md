@@ -3,7 +3,7 @@ NodeJS를 정리하는 저장소입니다.
 
 # Modeuls
 
-## URL Module
+## url Module
 
 https://www.google.co.kr/search?newwindow=1&dcr=0&source=hp&ei=ceoLWoiRPISu8QWg-on4BQ&q=node&oq=node
 
@@ -24,7 +24,7 @@ var googleURL = url.parse('https://www.google.co.kr/search?newwindow=1&dcr=0&sou
 var googleURLString = url.format(googleURL);
 ```
 
-## File Module
+## fs Module
 
 ### 파일을 읽거나 파일에 쓰기
 
@@ -111,8 +111,8 @@ stream은 데이터가 전달되는 통로같은 개념.
 
 | Method | Description |
 | --- | --- |
-| `createReadStream(path, [options]` | 파일을 읽기 위한 stream 객체를 만듬 |
-| `createWriteStream(path, [options]` | 파일을 쓰기 위한 stream 객체를 만듬 |
+| `createReadStream(path, [options])` | 파일을 읽기 위한 stream 객체를 만듬 |
+| `createWriteStream(path, [options])` | 파일을 쓰기 위한 stream 객체를 만듬 |
 
 ```javascript
 // 쓰기
@@ -157,3 +157,54 @@ fs.rmdir('./folder', (err) => {
 });
 
 ```
+
+## http Module
+
+| http Method | Description |
+| --- | --- |
+| `listen(port, [hostname], [backlog], [callback])`| server를 실행하고 대기합니다. |
+| `close([callback])` | 서버를 종료시킵니다. |
+
+
+| server event | Description |
+| --- | --- |
+| `connection` | client가 접속하여 연결될 때 발생하는 event |
+| `request` | client가 요청할 때 발생하는 event |
+| `close` | server를 종료할 때 발생하는 event|
+
+| request Method | Description |
+| --- | --- |
+| `writeHead(statusCode[, statusMessage][, headers])` | 응답으로 보낼 헤더를 만듬 |
+| `write(chunk[, encoding][,callback])` | 응답 body 데이터를 만듭니다. 여러번 호출 가능. |
+| `end([data][, encoding][, callback])` | 응답을 전송|
+
+```javascript
+
+var http = require('http');
+var server = http.createServer();
+
+var port = 3030;
+var host = '192.168.0.1';
+
+server.listen(port, host, () => {
+ // start web server.
+});
+
+server.on('connection', (socket) => {
+ var address = socket.address();
+ // address.address, address.port
+});
+
+server.on('request', (req, res) => {
+ res.writeHead(200, {'ContentType': text/html; charset=utf-8'});
+ res.write('Hello');
+ res.write('World');
+ res.end();
+});
+
+server.on('close', () => {
+ // end server.
+});
+
+```
+
