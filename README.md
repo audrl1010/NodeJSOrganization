@@ -3,8 +3,30 @@ NodeJS를 정리하는 저장소입니다.
 
 # Modeuls
 
+## URL
+
+https://www.google.co.kr/search?newwindow=1&dcr=0&source=hp&ei=ceoLWoiRPISu8QWg-on4BQ&q=node&oq=node
+
+`protocol`: https
+`host`: www.google.co.kr/search
+`query`: newwindow=1&dcr=0&source=hp&ei=ceoLWoiRPISu8QWg-on4BQ&q=node&oq=node
+
+| Method | Description |
+| --- | --- |
+| `parse()` | 주소 문자열을 파싱하여 URL 객체를 만들어 리턴
+| `format()` | URL객체를 주소 문자열로 변환
+
+```javascript
+var url = require('url');
+
+var googleURL = url.parse('https://www.google.co.kr/search?newwindow=1&dcr=0&source=hp&ei=ceoLWoiRPISu8QWg-on4BQ&q=node&oq=node');
+
+var googleURLString = url.format(googleURL);
+```
+
 ## File Module
 
+### 파일을 읽거나 파일에 쓰기
 
 | Method | Description |
 | --- | --- |
@@ -33,7 +55,7 @@ fs.writeFile('./file.txt', data, (err) => {
   }
 });
 ```
-
+### 파일을 직접 열고, 닫으면서 읽거나 쓰기
 
 | Method | Description |
 | --- | --- |
@@ -83,8 +105,55 @@ fs.open('./file.txt', 'w', (err, fd) => {
 
 ```
 
+### 스트림 단위로 파일 읽고 쓰기
+
+stream은 데이터가 전달되는 통로같은 개념.
+
+| Method | Description |
+| --- | --- |
+| `createReadStream(path, [options]` | 파일을 읽기 위한 stream 객체를 만듬 |
+| `createWriteStream(path, [options]` | 파일을 쓰기 위한 stream 객체를 만듬 |
+
+```javascript
+// 쓰기
+var fs = require('fs');
+
+var inputStream = fs.createReadStream('./infile.txt', { flag: 'r' });
+var outputStream = fs.createWriteStream('./outfile.txt', { flag: 'w' });
+
+inputStream.on('data', (data) => {
+ outputStream.write(data);
+});
+
+inputStream.on('end', () => {
+ outputStream.end(() => {
+   // end
+ })
+});
 
 
+// == inputStream.pipe(outputStream);
 
+```
 
+### 새로운 디렉토리 생성, 삭제
 
+```javascript
+
+// 생성
+var fs = require('fs');
+fs.mkdir('./foler', 0666, (err) => {
+ if (err) throw err;
+});
+
+```
+
+```javascript
+
+// 삭제
+var fs = require('fs');
+fs.rmdir('./folder', (err) => {
+ if (err) throw error;
+});
+
+```
