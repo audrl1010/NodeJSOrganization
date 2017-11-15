@@ -50,7 +50,7 @@ fs.open('./file.txt', 'w', (err, fd) {
   if (err) throw err;
   
   var buffer = new Buffer('Hello');
-  fs.write(fd, buffer, buffer.length, null, (err, written, buf) => {
+  fs.write(fd, buffer, 0, buffer.length, null, (err, written, buf) => {
     if (err) throw err;
       fs.close(fd);
   });
