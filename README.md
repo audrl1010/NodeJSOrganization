@@ -46,7 +46,7 @@ fs.writeFile('./file.txt', data, (err) => {
 
 var fs = require('fs');
 
-fs.open('./file.txt', 'w', (err, fd) {
+fs.open('./file.txt', 'w', (err, fd) => {
   if (err) throw err;
   
   var buffer = new Buffer('Hello');
