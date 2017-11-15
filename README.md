@@ -8,10 +8,10 @@ NodeJS를 정리하는 저장소입니다.
 
 | Method | Description |
 | --- | --- |
-| `readFile(filename, [encoding], [callback]) | Async IO로 파일을 읽어 들입니다.
-| `readFileSync(filename, [encoding]) | Sync IO로 파일을 읽어 들입니다.
-| `writeFile(filename, data, encoding='utf8', [callback]) | Async IO로 파일을 씁니다.
-| `writeFileSync(filename, data, encoding='utf8') | Sync IO로 파일을 씁니다.
+| `readFile(filename, [encoding], [callback])` | Async IO로 파일을 읽어 들입니다.
+| `readFileSync(filename, [encoding])` | Sync IO로 파일을 읽어 들입니다.
+| `writeFile(filename, data, encoding='utf8', [callback])` | Async IO로 파일을 씁니다.
+| `writeFileSync(filename, data, encoding='utf8')` | Sync IO로 파일을 씁니다.
 
 ```javascript
 var fs = require('fs');
