@@ -7,9 +7,9 @@ NodeJS를 정리하는 저장소입니다.
 
 https://www.google.co.kr/search?newwindow=1&dcr=0&source=hp&ei=ceoLWoiRPISu8QWg-on4BQ&q=node&oq=node
 
-`protocol`: https
-`host`: www.google.co.kr/search
-`query`: newwindow=1&dcr=0&source=hp&ei=ceoLWoiRPISu8QWg-on4BQ&q=node&oq=node
+protocol: https
+host: www.google.co.kr/search
+query: newwindow=1&dcr=0&source=hp&ei=ceoLWoiRPISu8QWg-on4BQ&q=node&oq=node
 
 | Method | Description |
 | --- | --- |
