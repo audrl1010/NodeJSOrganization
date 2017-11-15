@@ -42,6 +42,13 @@ fs.writeFile('./file.txt', data, (err) => {
 | `write(fd, buffer, offset, length, position, [callback])` | 파일의 지정한 부분에 데이터를 씁니다. |
 | `close(fd, [callback])` | 파일을 닫아 줍니다. |
 
+| Flags | Description |
+| --- | --- |
+| `w` | 읽기에 사용하는 flag, 파일이 없으면 예외가 발생됩니다. |
+| `r` | 쓰기에 사용하는 flag, 파일이 없으면 만들어지고, 파일이 있으면 이전 내용을 모두 삭제합니다. |
+| `w+` | 읽기와 쓰기에 모두 사용하는 flag, 파일이 없으면 만들어지고, 파일이 있으면 이전 내용을 모두 삭제합니다. |
+| `a+` | 읽기와 추가에 모두 사용하는 flag, 파일이 없으면 만들어지고, 파일이 있으면 이전 내용에 새로운 내용을 추가합니다. |
+
 ```javascript
 
 var fs = require('fs');
