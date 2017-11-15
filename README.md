@@ -49,8 +49,26 @@ fs.writeFile('./file.txt', data, (err) => {
 | `w+` | 읽기와 쓰기에 모두 사용하는 flag, 파일이 없으면 만들어지고, 파일이 있으면 이전 내용을 모두 삭제합니다. |
 | `a+` | 읽기와 추가에 모두 사용하는 flag, 파일이 없으면 만들어지고, 파일이 있으면 이전 내용에 새로운 내용을 추가합니다. |
 
-```javascript
 
+```javascript
+// 읽기
+var fs = require('fs');
+
+fs.open('./file.txt', 'r', (err, fd) => {
+  if (err) throw err;
+  
+  var buffer = new Buffer(30);
+  fs.read(fd, buffer, 0, buffer.length, null, (err, bytesRead, buf) => {
+    if (err) throw err;
+    let string = buffer.toString('utf8', 0, bytesRead);
+    fs.close(fd);
+  });
+});
+
+```
+
+```javascript
+// 쓰기
 var fs = require('fs');
 
 fs.open('./file.txt', 'w', (err, fd) => {
@@ -59,8 +77,14 @@ fs.open('./file.txt', 'w', (err, fd) => {
   var buffer = new Buffer('Hello');
   fs.write(fd, buffer, 0, buffer.length, null, (err, written, buf) => {
     if (err) throw err;
-      fs.close(fd);
+    fs.close(fd);
   });
 });
 
 ```
+
+
+
+
+
+
